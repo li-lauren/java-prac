@@ -58,16 +58,42 @@ public class Main {
         boolean isLetterT = aLetter == 't';
 
         // classes
-        class Person {
+        class Person { // REFERENCE TYPE
             // fields = pieces of info attached to a single type
             String username;
             int age;
+
+            // CONSTRUCTOR
+            public Person(String username, int age) {
+                this.username = username;
+                this.age = age;
+            }
+
+            // void = no return type
+            void celebrateBirthday() {
+                this.age++;
+                System.out.println(
+                        this.username
+                        + " says: It's my bday, I turned "
+                        + this.age
+                );
+            }
+
+            String throwParty(int nPeople, String favoritePlace) {
+                String throwAParty = this.username + " says: I'm throwing a party at" + favoritePlace;
+                String invitePeople = "I'm going to invite " + nPeople + " people!";
+                return throwAParty + invitePeople;
+            }
         }
 
         // instantiate a class
-        Person alice = new Person();
-        alice.username = "Alice";
-        alice.age = 25;
+        Person alice = new Person("Alice", 25);
+        alice.celebrateBirthday();
 
+        // all reference types (classes) can have method
+        String aTestString = "abcdef";
+        System.out.println(aTestString.length());
+        System.out.println(aTestString.startsWith("abc"));
+        System.out.println(aTestString.substring(0,2));
     }
 }
