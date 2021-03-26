@@ -2,6 +2,7 @@ package com.javaprac;
 
 public class Main {
 
+    // method signature = access modifier + (static) + return type + method name + list of args
     public static void main(String[] args) {
 	// write your code here
         System.out.println("Test print to console");
@@ -57,35 +58,6 @@ public class Main {
         boolean numberIsTooBig = aNumber > 100;
         boolean isLetterT = aLetter == 't';
 
-        // classes
-        class Person { // REFERENCE TYPE
-            // fields = pieces of info attached to a single type
-            String username;
-            int age;
-
-            // CONSTRUCTOR
-            public Person(String username, int age) {
-                this.username = username;
-                this.age = age;
-            }
-
-            // void = no return type
-            void celebrateBirthday() {
-                this.age++;
-                System.out.println(
-                        this.username
-                        + " says: It's my bday, I turned "
-                        + this.age
-                );
-            }
-
-            String throwParty(int nPeople, String favoritePlace) {
-                String throwAParty = this.username + " says: I'm throwing a party at" + favoritePlace;
-                String invitePeople = "I'm going to invite " + nPeople + " people!";
-                return throwAParty + invitePeople;
-            }
-        }
-
         // instantiate a class
         Person alice = new Person("Alice", 25);
         alice.celebrateBirthday();
@@ -95,5 +67,64 @@ public class Main {
         System.out.println(aTestString.length());
         System.out.println(aTestString.startsWith("abc"));
         System.out.println(aTestString.substring(0,2));
+
+        // arrays
+        Person bob = new Person("Bob", 43);
+        Person charlie = new Person("Charlie", 32);
+
+        Person[] peopleCelebrating = new Person[3];
+        peopleCelebrating[0] = alice;
+        peopleCelebrating[1] = bob;
+        peopleCelebrating[2] = charlie;
+
+        // foreach loop
+        for(Person person : peopleCelebrating) {
+            person.celebrateBirthday();
+        }
+
+        // static members and methods
+        boolean peopleCanFly = Person.canFly;
+        String peoplesProgrammingLan = Person.favLanguage();
+        System.out.println(peoplesProgrammingLan);
+
+        // access modifiers
+        // alice.secret; will give compiler error b/c secret is PRIVATE
+    }
+}
+
+// classes
+class Person { // REFERENCE TYPE
+    // fields = pieces of info attached to a single type
+    String username;
+    int age;
+    static boolean canFly = false;
+    // private = ACCESS MODIFIER
+    // other access modifiers: public, protected, (no modifier aka package protected)
+    private String secret = "nobody neeeds to know this";
+
+    // CONSTRUCTOR
+    public Person(String username, int age) {
+        this.username = username;
+        this.age = age;
+    }
+
+    // void = no return type
+    void celebrateBirthday() {
+        this.age++;
+        System.out.println(
+                this.username
+                        + " says: It's my bday, I turned "
+                        + this.age
+        );
+    }
+
+    String throwParty(int nPeople, String favoritePlace) {
+        String throwAParty = this.username + " says: I'm throwing a party at" + favoritePlace;
+        String invitePeople = "I'm going to invite " + nPeople + " people!";
+        return throwAParty + invitePeople;
+    }
+
+    static String favLanguage() {
+        return "Java";
     }
 }
